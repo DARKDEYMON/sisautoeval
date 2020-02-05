@@ -1,0 +1,6 @@
+body{
+	//padding-top: 70px;
+	background-image: url("/static/fondo.jpg");
+	//background-repeat: no-repeat;
+	background-size: cover;
+}

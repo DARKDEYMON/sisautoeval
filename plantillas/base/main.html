@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Sistema de Autoevaluacion a las Carreras UATF</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	{% include 'material/includes/material_css.html' %}
+	{% include 'material/includes/material_js.html' %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" type="text/css" href="{% static "styles.css" %}">
+	{% block estilos %}
+		
+	{% endblock estilos %}
+</head>
+<body>
+	{% block nav %}
+		{% include "base/nav.html" %}
+	{% endblock nav %}
+	{% block body %}
+		<div class="container">
+			<h2>Dirección de Evaluación y Acreditación</h2>
+			<p>Sistema de Autoevaluacion a las Carreras UATF</p>
+			<img src="{% static "logo.png" %}" alt="" class="img-responsive center-block" />
+		</div>
+	{% endblock body %}
+	{% block footer %}
+		
+	{% endblock footer %}
+	<script>
+		M.AutoInit();
+	</script>
+</body>
+</html>

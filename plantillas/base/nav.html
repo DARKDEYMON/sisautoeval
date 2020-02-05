@@ -1,0 +1,73 @@
+{% load static %}
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo">Kui-Xing</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+       <li>
+        <a href="badges.html">Components</a>
+      </li>
+      <li>
+        <a class="dropdown-trigger" href="#!" data-target="dropdown2">Usuarios
+          <i class="material-icons right">arrow_drop_down</i>
+        </a>
+        <ul id="dropdown2" class="dropdown-content">
+          <li tabindex="0">
+            <a href="{% url 'usuarios:createuser' %}">Crear</a>
+          </li>
+          <li tabindex="0">
+            <a href="{% url 'usuarios:listausers' %}">Lista</a>
+          </li>
+        </ul>
+        
+      </li>
+      <!-- Dropdown Trigger -->
+      <li>
+        <a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ request.user.username }}
+          <i class="material-icons right">arrow_drop_down</i>
+        </a>
+        <ul id="dropdown1" class="dropdown-content">
+          <li tabindex="0">
+            <a href="#!">one</a>
+          </li>
+          <li tabindex="0">
+            <a href="#!">two</a>
+          </li>
+          <li class="divider" tabindex="0"></li>
+          <li tabindex="0">
+            <a href="{% url 'usuarios:logout' %}">Salir</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li>
+    <div class="user-view">
+      <div class="background">
+        <img src="{% static "office.jpg" %}">
+      </div>
+      <a href="#user"><img class="circle" src="{% static "user.jpg" %}"></a>
+      <a href="#name"><span class="white-text name">John Doe</span></a>
+      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+    </div>
+  </li>
+  <li>
+    <a class="dropdown-trigger" href="#!" data-target="dropdownm2">Usuarios
+      <i class="material-icons right">arrow_drop_down</i>
+    </a>
+    <ul id="dropdownm2" class="dropdown-content">
+      <li tabindex="0">
+        <a href="{% url 'usuarios:createuser' %}">Crear</a>
+      </li>
+      <li tabindex="0">
+        <a href="{% url 'usuarios:listausers' %}">Lista</a>
+      </li>
+    </ul>
+  </li>
+  <li><a href="badges.html">Components</a></li>
+  <li><a href="collapsible.html">Javascript</a></li>
+  <li><a href="{% url 'usuarios:logout' %}">Salir</a></li>
+</ul>

@@ -1,0 +1,74 @@
+{% extends "base/main.html" %}
+{% load static %}
+
+	{% block nav %}
+		
+	{% endblock nav %}
+
+	{% block body %}
+	
+		<div class="container row">
+			<div class="card-panel col offset-l2 l8 offset-l2 s12 m12">
+				<form {% block iddanger %} {% endblock iddanger %} action="{% url 'usuarios:login' %}" method="post" enctype="multipart/form-data" >
+					{% csrf_token %}
+					<div class="row">
+						<div class="row">
+						<div class="col s12 ">
+							<h5 class="valign center">Ingreso</h5>
+						</div>
+						</div>
+						<div class="input-field col s12">
+							<i class="material-icons prefix">account_box</i>
+							<input id="username" type="text" class="validate" name="username">
+							<label class="active" for="username">Username</label>
+						</div>
+						<div class="input-field col s12">
+							<i class="material-icons prefix">lock_outline</i>
+							<input id="password" type="password" class="validate" name="password">
+							<label class="active" for="password">Password</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<button href="#" class="btn waves-effect waves-light col s12" type="submit" name="action">Login</button>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6 m6 l6">
+							{% block errores %}
+								{% if form.errors %}
+										<p>Tu nombre de usuario o contraseña no se han encontrado. Intente de nuevo</p>
+								{% endif %}
+
+								{% if next %}
+									{% if user.is_authenticated %}
+									    <p>Tu cuenta no tiene acceso a esta página. Para continuar,
+									    ingresa con una cuenta registrada con los permisos necesarios.</p>
+									{% else %}
+									    <p>Por favor ingresa los datos requeridos para ver la pagina principal.</p>
+									{% endif %}
+								{% endif %}
+							{% endblock errores %}
+						</div>
+						<div class="input-field col s6 m6 l6">
+							<p class="margin right-align medium-small"><a href="#">Olvido su Contraseña?</a></p>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col l3 s12 m12">
+					<img src="{% static "logo.png" %}" width="200" alt="">
+				</div>
+				<div class="col l9">
+					<div class="">
+						<h1>Dirección de Evaluación y Acreditación</h1>
+						<p>Sistema de Autoevaluacion a las Carreras UATF</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endblock body %}
