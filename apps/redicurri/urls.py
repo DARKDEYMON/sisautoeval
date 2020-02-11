@@ -14,15 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.views.generic import RedirectView
-from django.urls import reverse_lazy
-from material.frontend import urls as frontend_urls
+from django.urls import path
+from django.contrib.auth.decorators import login_required, permission_required
+from .views import *
 
 urlpatterns = [
-	path('', include(frontend_urls)),
-	path('admin/', admin.site.urls),
-	path('', RedirectView.as_view(url=reverse_lazy('usuarios:main')), name='home'),
-	path('users/', include(('apps.usuarios.urls','usuarios'), namespace='usuarios')),
-    path('redicurri/', include(('apps.redicurri.urls','redicurri'), namespace='redicurri')),
+	path('evalredi/',login_required(eval_recurricular_view.as_view()), name='evalredi'),
 ]

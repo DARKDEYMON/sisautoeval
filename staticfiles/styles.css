@@ -4,3 +4,11 @@ body{
 	//background-repeat: no-repeat;
 	background-size: cover;
 }
+select[required] {
+  opacity: 0;
+  display: block;
+  position: absolute;
+  height: 0;
+  border: none;
+  margin-top: -50px;
+}

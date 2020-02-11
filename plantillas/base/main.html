@@ -1,14 +1,22 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<meta charset="utf-8">
+	<!-- Chrome, Firefox OS and Opera -->
+	<meta name="theme-color" content="#101010">
+	<!-- Windows Phone -->
+	<meta name="msapplication-navbutton-color" content="#101010">
+	<!-- iOS Safari -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="#101010">
+
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Sistema de Autoevaluacion a las Carreras UATF</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	{% include 'material/includes/material_css.html' %}
 	{% include 'material/includes/material_js.html' %}
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0"/>-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="{% static "styles.css" %}">
 	{% block estilos %}
 		
@@ -20,9 +28,13 @@
 	{% endblock nav %}
 	{% block body %}
 		<div class="container">
-			<h2>Dirección de Evaluación y Acreditación</h2>
-			<p>Sistema de Autoevaluacion a las Carreras UATF</p>
-			<img src="{% static "logo.png" %}" alt="" class="img-responsive center-block" />
+			<div class="row">
+				<div class="col s12">
+					<h2>Dirección de Evaluación y Acreditación</h2>
+					<p>Sistema de Autoevaluacion a las Carreras UATF</p>
+					<img src="{% static "logo.png" %}" alt="" class="img-responsive center-block" />
+				</div>
+			</div>
 		</div>
 	{% endblock body %}
 	{% block footer %}
