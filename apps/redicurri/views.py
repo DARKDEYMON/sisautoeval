@@ -8,3 +8,8 @@ class eval_recurricular_view(CreateView):
 	form_class = eval_recurricular_form
 	template_name = 'redicurri/crear_eval.html'
 	success_url = '/'
+
+class eval_eval_evaluacion_recurricular_view(CreateView):
+	form_class = eval_evaluacion_recurricular_form
+	template_name = 'redicurri/crear_evalredi.html'
+	success_url = '/'

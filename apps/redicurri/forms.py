@@ -26,3 +26,8 @@ class eval_recurricular_form(ModelForm):
 	class Meta:
 		model = eval_recurricular
 		exclude = ['gestion']
+
+class eval_evaluacion_recurricular_form(ModelForm):
+	class Meta:
+		model = evaluacion_recurricular
+		exclude = ['carrera','gestion']

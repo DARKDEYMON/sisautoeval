@@ -2,4 +2,4 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-admin.site.register(eval_recurricular)
+admin.site.register(evaluacion_recurricular)

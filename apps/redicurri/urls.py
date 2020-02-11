@@ -20,4 +20,5 @@ from .views import *
 
 urlpatterns = [
 	path('evalredi/',login_required(eval_recurricular_view.as_view()), name='evalredi'),
+	path('evalredicur/',login_required(eval_eval_evaluacion_recurricular_view.as_view()), name='evalredicur'),
 ]
