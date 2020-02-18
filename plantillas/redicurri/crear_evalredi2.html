@@ -1,0 +1,29 @@
+{% extends "base/main.html" %}
+{% load material_form %}
+{% load static %}
+	{% block body %}
+		<div class="container row">
+			<div class="card hoverable col s12">
+				<h4 class="center-align">Evaluación Al Rediseño Curricular Segunda Parte</h4>
+				<form method="POST" action="">
+					{% csrf_token %}
+					{% form form=form %}{% endform %}
+					<div class="row input-field">
+						<div class="col s12 card-action center-align">
+							<button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+		    					<i class="material-icons right">send</i>
+		  					</button>
+						</div>
+  					</div>
+				</form>
+			</div>
+		</div>
+		<script src="{% static "activador.js" %}" type="text/javascript"></script>
+		<script type="text/javascript" charset="utf-8">
+			for(i=1;i<=7;i++){
+				res = document.getElementById("id_netapa_"+i+"_4");
+				if(res!=null)
+					activar_desactivar_avansado("id_netapa_"+i+"_4",["id_oetapa_"+i+"_container"],true);
+			}
+		</script>
+	{% endblock body %}

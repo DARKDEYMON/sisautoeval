@@ -21,22 +21,39 @@
             <li tabindex="0">
               <a href="{% url 'usuarios:listausers' %}">Lista</a>
             </li>
-          </ul>
-        </li>
-      {% endif %}
-
-        <!-- crear permisos -->
-        <li>
-          <a class="dropdown-trigger" href="#!" data-target="dropdown2">R. Curricular
-            <i class="material-icons right">arrow_drop_down</i>
-          </a>
-          <ul id="dropdown2" class="dropdown-content">
-            <li tabindex="0">
-              <a href="{% url 'redicurri:evalredi' %}">Evaluación</a>
+            <li>
+              <a href="{% url 'usuarios:confgeneral' %}">Configuración</a>
             </li>
           </ul>
         </li>
-
+      {% endif %}
+      
+      {% if perms.usuarios.academico %}
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="dropdown3">Académico
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+          <ul id="dropdown3" class="dropdown-content">
+            <li tabindex="0">
+              <a href="{# url 'usuarios:createuser' #}">Configuración</a>
+            </li>
+          </ul>
+        </li>
+      {% endif %}
+        <!-- crear permisos -->
+      {% if perms.usuarios.rediseño %}
+        <li>
+          <a class="dropdown-trigger" href="#!" data-target="dropdown4">R. Curricular
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+          <ul id="dropdown4" class="dropdown-content">
+            <li tabindex="0">
+              <a href="{% url 'redicurri:carrerasredi' %}">Carreras</a>
+              <a href="{% url 'redicurri:listevalredi' %}">Lista evaluaciones</a>
+            </li>
+          </ul>
+        </li>
+      {% endif %}
       <!-- Dropdown Trigger -->
       <li>
         <a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ request.user.username }}
@@ -85,19 +102,21 @@
       </ul>
     </li>
   {% endif %}
+  {% if perms.usuarios.rediseño %}
     <li>
       <ul class="collapsible collapsible-accordion" style="padding: 0px 15px;">
         <li>
           <a class="collapsible-header"><i class="material-icons">account_circle</i>R. Curricular</a>
           <div class="collapsible-body">
             <ul>
-              <li><a href="{% url 'redicurri:evalredi' %}">Evaluación</a></li>
+              <a href="{% url 'redicurri:carrerasredi' %}">Carreras</a>
+              <a href="{% url 'redicurri:listevalredi' %}">Lista evaluaciones</a>
             </ul>
           </div>
         </li>
       </ul>
     </li>
-
+  {% endif %}
   <li class="no-padding">
     <a href="{% url 'usuarios:logout' %}"><i class="material-icons">exit_to_app</i>Salir</a>
   </li>

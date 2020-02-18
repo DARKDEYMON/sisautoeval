@@ -38,11 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'material',
+    'material.frontend',
+    'constance',
+    'constance.backends.database',
+    'multiselectfield',
     'apps.usuarios',
     'apps.academico',
     'apps.redicurri',
-    'material',
-    'material.frontend',
+    
 ]
 
 MIDDLEWARE = [
@@ -150,3 +155,12 @@ EMAIL_HOST_PASSWORD = 'nosdurno1988'
 EMAIL_PORT = 587
 
 PASSWORD_RESET_TIMEOUT_DAYS = 1
+
+#configuracion dinamica 
+CONSTANCE_BACKEND = 'constance.backends.database.DatabaseBackend'
+CONSTANCE_CONFIG = {
+    'ACTIVO_REDIEVAL':(False,'Determina si esta activo la evaluacion al rediseño',bool),
+    'GESTION_ACTIVO': (False, 'Determina eleccion manual de gestion',bool),
+    'GESTION': (2018, 'Valor de la gestion manual',int),
+}
+CONSTANCE_SUPERUSER_ONLY = False

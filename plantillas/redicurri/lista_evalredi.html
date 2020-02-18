@@ -20,19 +20,13 @@
 									#id
 								</th>
 								<th>
-									Username
+									Carrera
 								</th>
 								<th>
 									Nombre
 								</th>
 								<th>
-									Apellidos
-								</th>
-								<th>
-									Email
-								</th>
-								<th>
-									Permisos
+									Activo?
 								</th>
 								<th>
 									Opciones
@@ -40,35 +34,32 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% for user in object_list %}
+							{% for eval in object_list %}
 								<tr>
 									<td>
-										{{user.id}}
+										{{eval.id}}
 									</td>
 									<td>
-										{{user.username}}
+										{{eval.carrera.nombre}}
 									</td>
 									<td>
-										{{user.first_name }}
+										{{eval.gestion}}
 									</td>
 									<td>
-										{{user.last_name}}
-									</td>
-									<td>
-										{{user.email}}
-									</td>
-									<td>
-										{% for p in user.user_permissions.all %}
-											<span class="new badge" data-badge-caption="">{{ p.codename|title }}</span>
-										{% endfor %}
+										{% if eval.activo %}
+											<span class="new badge blue" data-badge-caption="Avierto"></span>
+										{% else %}
+											<span class="new badge red" data-badge-caption="Cerrado"></span>
+										{% endif %}
 									</td>
 									<td>
 										<a class='dropdown-trigger btn' href='#' data-target='dr{{ forloop.counter }}'>Opciones</a>
 										<!-- Dropdown Structure -->
 										<ul id='dr{{ forloop.counter }}' class='dropdown-content'>
-											<li><a href="{% url 'usuarios:addpermission' user.pk %}">Permisos</a></li>
-											<li><a href="{% url 'usuarios:asignacion' user.pk %}">Designar</a></li>
-											<li><a href="{% url 'usuarios:listadesig' user.pk %}">Lista D.</a></li>
+											{% if eval.carrera.aval_pendiente.0 %}
+												<li><a href="{% url 'redicurri:evalredicurup' eval.pk %}">Evaluacion</a></li>
+											{% endif %}
+											<li><a href="">Resultado</a></li>
 										</ul>
 									</td>
 								</tr>

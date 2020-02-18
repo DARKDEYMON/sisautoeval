@@ -1,10 +1,11 @@
 {% extends "base/main.html" %}
 {# load humanize #}
 {% load material_form %}
+{% load humanize %}
 	{% block body %}
 		<div class="container row">
 			<div class="card-panel col s12">
-				<h4 class="center-align">Lista de Usuarios</h4>
+				<h4 class="center-align">Lista de Carreras Asignadas</h4>
 				{% if object_list %}
 					<div class="input-field col s12">
 						<form method="GET" action="">
@@ -20,19 +21,13 @@
 									#id
 								</th>
 								<th>
-									Username
-								</th>
-								<th>
 									Nombre
 								</th>
 								<th>
-									Apellidos
+									Fundación
 								</th>
 								<th>
-									Email
-								</th>
-								<th>
-									Permisos
+									Estado Evaluacion?
 								</th>
 								<th>
 									Opciones
@@ -40,35 +35,27 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% for user in object_list %}
+							{% for carrera in object_list %}
 								<tr>
 									<td>
-										{{user.id}}
+										{{carrera.id}}
 									</td>
 									<td>
-										{{user.username}}
+										{{carrera.nombre}}
 									</td>
 									<td>
-										{{user.first_name }}
+										{{carrera.fecha_fundacion}}
 									</td>
 									<td>
-										{{user.last_name}}
-									</td>
-									<td>
-										{{user.email}}
-									</td>
-									<td>
-										{% for p in user.user_permissions.all %}
-											<span class="new badge" data-badge-caption="">{{ p.codename|title }}</span>
-										{% endfor %}
+										{{carrera.aval_pendiente.1}}
 									</td>
 									<td>
 										<a class='dropdown-trigger btn' href='#' data-target='dr{{ forloop.counter }}'>Opciones</a>
 										<!-- Dropdown Structure -->
 										<ul id='dr{{ forloop.counter }}' class='dropdown-content'>
-											<li><a href="{% url 'usuarios:addpermission' user.pk %}">Permisos</a></li>
-											<li><a href="{% url 'usuarios:asignacion' user.pk %}">Designar</a></li>
-											<li><a href="{% url 'usuarios:listadesig' user.pk %}">Lista D.</a></li>
+											{% if carrera.aval_pendiente.0 %}
+												<li><a href="{% url 'redicurri:evalredicu' carrera.pk %}">Evaluacion</a></li>
+											{% endif %}
 										</ul>
 									</td>
 								</tr>

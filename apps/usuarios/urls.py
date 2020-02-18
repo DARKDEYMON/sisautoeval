@@ -30,4 +30,9 @@ urlpatterns = [
 	path('listausers/',permission_required('usuarios.usuarios')(login_required(lista_usuarios_view.as_view())), name='listausers'),
 	path('addpermission/<int:pk>/',permission_required('usuarios.usuarios')(login_required(permisos_view.as_view())), name='addpermission'),
 	path('createuser/',permission_required('usuarios.usuarios')(login_required(create_user_view.as_view())), name='createuser'),
+
+	path('asignacion/<int:pk>/',permission_required('usuarios.usuarios')(login_required(asignar_evaluacion_view.as_view())), name='asignacion'),
+	path('listadesig/<int:pk>/',permission_required('usuarios.usuarios')(login_required(lista_usuarios_designacion_view.as_view())), name='listadesig'),
+	path('deleteasig/<int:pk>/',permission_required('usuarios.usuarios')(login_required(borrar_evaluacion_view.as_view())), name='deleteasig'),
+	path('confgeneral',permission_required('usuarios.usuarios')(login_required(configuracion_general_view.as_view())),name='confgeneral'),
 ]

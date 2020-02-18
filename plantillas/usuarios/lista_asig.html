@@ -1,6 +1,7 @@
 {% extends "base/main.html" %}
 {# load humanize #}
 {% load material_form %}
+{% load humanize %}
 	{% block body %}
 		<div class="container row">
 			<div class="card-panel col s12">
@@ -20,19 +21,10 @@
 									#id
 								</th>
 								<th>
-									Username
-								</th>
-								<th>
 									Nombre
 								</th>
 								<th>
-									Apellidos
-								</th>
-								<th>
-									Email
-								</th>
-								<th>
-									Permisos
+									Fundación
 								</th>
 								<th>
 									Opciones
@@ -40,35 +32,22 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% for user in object_list %}
+							{% for desig in object_list %}
 								<tr>
 									<td>
-										{{user.id}}
+										{{desig.carrera.id}}
 									</td>
 									<td>
-										{{user.username}}
+										{{desig.carrera.nombre}}
 									</td>
 									<td>
-										{{user.first_name }}
-									</td>
-									<td>
-										{{user.last_name}}
-									</td>
-									<td>
-										{{user.email}}
-									</td>
-									<td>
-										{% for p in user.user_permissions.all %}
-											<span class="new badge" data-badge-caption="">{{ p.codename|title }}</span>
-										{% endfor %}
+										{{desig.carrera.fecha_fundacion}}
 									</td>
 									<td>
 										<a class='dropdown-trigger btn' href='#' data-target='dr{{ forloop.counter }}'>Opciones</a>
 										<!-- Dropdown Structure -->
 										<ul id='dr{{ forloop.counter }}' class='dropdown-content'>
-											<li><a href="{% url 'usuarios:addpermission' user.pk %}">Permisos</a></li>
-											<li><a href="{% url 'usuarios:asignacion' user.pk %}">Designar</a></li>
-											<li><a href="{% url 'usuarios:listadesig' user.pk %}">Lista D.</a></li>
+											<li><a href="{% url 'usuarios:deleteasig' user.pk %}">Borrar</a></li>
 										</ul>
 									</td>
 								</tr>

@@ -7,6 +7,8 @@ from .models import *
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
+from constance import config
+
 class crear_user_form(UserCreationForm):
 	class Meta:
 		model=User
@@ -39,3 +41,28 @@ class add_permissions_form(forms.Form):
 			else:
 				if(idx>3):
 					self.fields[p.codename] = forms.BooleanField(label='Dar permiso para el modulo '+ p.codename, required=False)
+
+class asignar_evaluacion_form(ModelForm):
+	def __init__(self,*args,**kwargs):
+		super (asignar_evaluacion_form,self ).__init__(*args,**kwargs)
+		self.fields['carrera'].widget.attrs = {'class':'js-example-basic-single browser-default'}
+	class Meta:
+		model = asignacion_evaluacion
+		exclude = ['usuario']
+
+class configuracion_general_form(forms.Form):
+	gestion = forms.IntegerField(required=True,min_value=1999,max_value=3000,initial=lambda:config.GESTION,label='Gestión de activación manual para la evaluación')
+	activada_gestion_manual = forms.BooleanField(initial=lambda:config.GESTION_ACTIVO,required=False,label='Activar/desactivar Gestión/periodo manual para la evaluación')
+	activar_eval_redi = forms.BooleanField(initial=lambda:config.ACTIVO_REDIEVAL,required=False,label='Activar evaluacion al rediseño curricular')
+
+	def save(self):
+		ges = self.cleaned_data['gestion']
+		config.GESTION = ges
+
+		activo = self.cleaned_data['activada_gestion_manual']
+		config.GESTION_ACTIVO = activo
+
+		rediact = self.cleaned_data['activar_eval_redi']
+		config.ACTIVO_REDIEVAL = rediact
+
+		return
