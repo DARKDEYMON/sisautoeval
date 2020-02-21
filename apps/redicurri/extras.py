@@ -8,7 +8,8 @@ def gestion():
 def eliminar_al_cambiar(pk):
 	import apps.redicurri.models as m
 	from apps.redicurri.models import evaluacion_recurricular
-	for x in range(1,2):
+	pasar = False
+	for x in range(1,8):
 		res1 = evaluacion_recurricular.objects.get(pk=pk)
 		print(res1)
 		eta = getattr(m,'etapa_'+str(x))

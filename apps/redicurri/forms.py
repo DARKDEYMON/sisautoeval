@@ -67,5 +67,30 @@ class etapa_2_form(ModelForm):
 		model = etapa_2
 		exclude = ['evaluacion_recurricular']
 
+class etapa_3_form(ModelForm):
+	class Meta:
+		model = etapa_3
+		exclude = ['evaluacion_recurricular']
+
+class etapa_4_form(ModelForm):
+	class Meta:
+		model = etapa_4
+		exclude = ['evaluacion_recurricular']
+
+class etapa_5_form(ModelForm):
+	class Meta:
+		model = etapa_5
+		exclude = ['evaluacion_recurricular']
+
+class etapa_6_form(ModelForm):
+	class Meta:
+		model = etapa_6
+		exclude = ['evaluacion_recurricular']
+
+class etapa_7_form(ModelForm):
+	class Meta:
+		model = etapa_7
+		exclude = ['evaluacion_recurricular']
+
 class search_form(forms.Form):
 	search = forms.CharField(required=False, label="", help_text="", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Buscar...'}))

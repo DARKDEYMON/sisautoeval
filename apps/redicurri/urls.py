@@ -34,5 +34,24 @@ urlpatterns = [
     path('etapa2cr/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_2_view.as_view())), name='etapa2cr'),
     path('etapa2up/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_2_update_view.as_view())), name='etapa2up'),
     path('etapa2re/<int:pk>/',permission_required('usuarios.rediseño')(login_required(redirec_eval_etapa_2_view)), name='etapa2re'),
- 
+    #etapa3
+    path('etapa3cr/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_3_view.as_view())), name='etapa3cr'),
+    path('etapa3up/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_3_update_view.as_view())), name='etapa3up'),
+    path('etapa3re/<int:pk>/',permission_required('usuarios.rediseño')(login_required(redirec_eval_etapa_3_view)), name='etapa3re'),
+    #etapa4
+    path('etapa4cr/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_4_view.as_view())), name='etapa4cr'),
+    path('etapa4up/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_4_update_view.as_view())), name='etapa4up'),
+    path('etapa4re/<int:pk>/',permission_required('usuarios.rediseño')(login_required(redirec_eval_etapa_4_view)), name='etapa4re'),
+    #etapa5
+    path('etapa5cr/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_5_view.as_view())), name='etapa5cr'),
+    path('etapa5up/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_5_update_view.as_view())), name='etapa5up'),
+    path('etapa5re/<int:pk>/',permission_required('usuarios.rediseño')(login_required(redirec_eval_etapa_5_view)), name='etapa5re'),
+    #etapa6
+    path('etapa6cr/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_6_view.as_view())), name='etapa6cr'),
+    path('etapa6up/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_6_update_view.as_view())), name='etapa6up'),
+    path('etapa6re/<int:pk>/',permission_required('usuarios.rediseño')(login_required(redirec_eval_etapa_6_view)), name='etapa6re'),
+    #etapa7
+    path('etapa7cr/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_7_view.as_view())), name='etapa7cr'),
+    path('etapa7up/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_7_update_view.as_view())), name='etapa7up'),
+    path('etapa7re/<int:pk>/',permission_required('usuarios.rediseño')(login_required(redirec_eval_etapa_7_view)), name='etapa7re'),
 ]
