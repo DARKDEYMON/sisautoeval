@@ -9,7 +9,8 @@ class facultad(models.Model):
 	nombre = models.CharField(
 		max_length=100,
 		null=False,
-		blank=False
+		blank=False,
+		unique=True
 	)
 	fecha_fundacion = models.DateField(
 		null=False,
@@ -23,7 +24,8 @@ class carrera(models.Model):
 	nombre = models.CharField(
 		max_length=100,
 		null=False,
-		blank=False
+		blank=False,
+		unique=True
 	)
 	fecha_fundacion = models.DateField(
 		null=False,

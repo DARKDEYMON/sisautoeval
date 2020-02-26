@@ -25,4 +25,5 @@ urlpatterns = [
 	path('', RedirectView.as_view(url=reverse_lazy('usuarios:main')), name='home'),
 	path('users/', include(('apps.usuarios.urls','usuarios'), namespace='usuarios')),
     path('redicurri/', include(('apps.redicurri.urls','redicurri'), namespace='redicurri')),
+    path('academico/', include(('apps.academico.urls','acdemico'), namespace='academico')),
 ]

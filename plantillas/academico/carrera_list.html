@@ -5,7 +5,7 @@
 	{% block body %}
 		<div class="container row">
 			<div class="card-panel col s12">
-				<h4 class="center-align">Lista de Designaciones</h4>
+				<h4 class="center-align">Lista de Carreras</h4>
 				{% if object_list %}
 					<div class="input-field col s12">
 						<form method="GET" action="">
@@ -27,27 +27,33 @@
 									Fundación
 								</th>
 								<th>
+									Facultad
+								</th>
+								<th>
 									Opciones
 								</th>
 							</tr>
 						</thead>
 						<tbody>
-							{% for desig in object_list %}
+							{% for carre in object_list %}
 								<tr>
 									<td>
-										{{desig.id}}
+										{{carre.id}}
 									</td>
 									<td>
-										{{desig.carrera.nombre}}
+										{{carre.nombre}}
 									</td>
 									<td>
-										{{desig.carrera.fecha_fundacion}}
+										{{carre.fecha_fundacion}}
+									</td>
+									<td>
+										{{carre.facultad.nombre}}
 									</td>
 									<td>
 										<a class='dropdown-trigger btn' href='#' data-target='dr{{ forloop.counter }}'>Opciones</a>
 										<!-- Dropdown Structure -->
 										<ul id='dr{{ forloop.counter }}' class='dropdown-content'>
-											<li><a href="{% url 'usuarios:deleteasig' desig.pk %}">Borrar</a></li>
+											<li><a href="{% url 'academico:carreup' carre.pk %}">Editar</a></li>
 										</ul>
 									</td>
 								</tr>

@@ -3,6 +3,7 @@ from apps.academico.models import *
 import datetime
 from constance import config
 from multiselectfield import MultiSelectField
+from django.contrib.auth.models import User
 
 def gestion():
 	now = datetime.datetime.now()
@@ -11,6 +12,7 @@ def gestion():
 # Create your models here.
 class evaluacion_recurricular(models.Model):
 	carrera = models.ForeignKey(carrera, on_delete=models.CASCADE)
+	usuario = models.ForeignKey(User, on_delete= models.CASCADE)
 	gestion = models.IntegerField(
 		verbose_name=u'Gestion',
 		null=False,

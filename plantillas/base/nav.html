@@ -35,7 +35,10 @@
           </a>
           <ul id="dropdown3" class="dropdown-content">
             <li tabindex="0">
-              <a href="{# url 'usuarios:createuser' #}">Configuración</a>
+              <a href="{% url 'academico:evalredigen' %}">Eval. de rediseño C.</a>
+              <a href="{% url 'academico:faculcre' %}">C. Facultad</a>
+              <a href="{% url 'academico:listfacul' %}">L. Facultades</a>
+              <a href="{% url 'academico:carrelist' %}">L. Carreras</a>
             </li>
           </ul>
         </li>
@@ -61,10 +64,7 @@
         </a>
         <ul id="dropdown1" class="dropdown-content">
           <li tabindex="0">
-            <a href="#!">one</a>
-          </li>
-          <li tabindex="0">
-            <a href="#!">two</a>
+            <a href="#!">Editar</a>
           </li>
           <li class="divider" tabindex="0"></li>
           <li tabindex="0">

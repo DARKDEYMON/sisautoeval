@@ -8,17 +8,19 @@ def gestion():
 def eliminar_al_cambiar(pk):
 	import apps.redicurri.models as m
 	from apps.redicurri.models import evaluacion_recurricular
-	pasar = False
+	pasar = True
 	for x in range(1,8):
 		res1 = evaluacion_recurricular.objects.get(pk=pk)
-		print(res1)
+		#print(res1)
 		eta = getattr(m,'etapa_'+str(x))
 		com = getattr(res1,'retapa_'+str(x))
-		print(eta)
+		#print(com)
 		if not com:
+			pasar = False
 			try:
 				resb = eta.objects.get(evaluacion_recurricular=res1)
 				print(resb)
 				resb.delete()
 			except Exception as e:
 				pass
+	return pasar
