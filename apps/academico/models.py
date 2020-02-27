@@ -2,6 +2,7 @@ from django.db import models
 from constance import config
 from django.apps import apps
 from apps.redicurri.extras import *
+from simple_history.models import HistoricalRecords
 
 # Create your models here.
 
@@ -16,6 +17,7 @@ class facultad(models.Model):
 		null=False,
 		blank=False
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return self.nombre
 
@@ -31,6 +33,7 @@ class carrera(models.Model):
 		null=False,
 		blank=False
 	)
+	history = HistoricalRecords()
 	def aval_pendiente(self):
 		if config.ACTIVO_REDIEVAL:
 			try:

@@ -5,6 +5,8 @@ from constance import config
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 
+from simple_history.models import HistoricalRecords
+
 def gestion():
 	now = datetime.datetime.now()
 	return config.GESTION if (config.GESTION_ACTIVO) else now.year
@@ -177,6 +179,7 @@ class evaluacion_recurricular(models.Model):
 		blank=True,
 		null=True
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.gestion)
 
@@ -245,6 +248,7 @@ class etapa_1(models.Model):
 		null=False,
 		choices=(('b','Bueno'),('o','Oportuno'),('r','Regular'))
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.evaluacion_recurricular)
 
@@ -408,6 +412,7 @@ class etapa_2(models.Model):
 		null=False,
 		choices=(('b','Bueno'),('o','Oportuno'),('r','Regular'))
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.evaluacion_recurricular)
 
@@ -538,6 +543,7 @@ class etapa_3(models.Model):
 		null=False,
 		choices=(('b','Bueno'),('o','Oportuno'),('r','Regular'))
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.evaluacion_recurricular)
 
@@ -626,6 +632,7 @@ class etapa_4(models.Model):
 		null=False,
 		choices=(('b','Bueno'),('o','Oportuno'),('r','Regular'))
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.evaluacion_recurricular)
 
@@ -711,6 +718,7 @@ class etapa_5(models.Model):
 		null=False,
 		choices=(('b','Bueno'),('o','Oportuno'),('r','Regular'))
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.evaluacion_recurricular)
 
@@ -794,6 +802,7 @@ class etapa_6(models.Model):
 		null=False,
 		choices=(('b','Bueno'),('o','Oportuno'),('r','Regular'))
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.evaluacion_recurricular)
 
@@ -820,5 +829,6 @@ class etapa_7(models.Model):
 		blank=True,
 		null=True
 	)
+	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.evaluacion_recurricular)
