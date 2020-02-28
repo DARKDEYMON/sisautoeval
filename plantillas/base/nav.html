@@ -15,15 +15,9 @@
             <i class="material-icons right">arrow_drop_down</i>
           </a>
           <ul id="dropdown2" class="dropdown-content">
-            <li tabindex="0">
-              <a href="{% url 'usuarios:createuser' %}">Crear</a>
-            </li>
-            <li tabindex="0">
-              <a href="{% url 'usuarios:listausers' %}">Lista</a>
-            </li>
-            <li>
-              <a href="{% url 'usuarios:confgeneral' %}">Configuración</a>
-            </li>
+            <li tabindex="0"><a href="{% url 'usuarios:createuser' %}">Crear</a></li>
+            <li tabindex="0"><a href="{% url 'usuarios:listausers' %}">Lista</a></li>
+            <li><a href="{% url 'usuarios:confgeneral' %}">Configuración</a></li>
           </ul>
         </li>
       {% endif %}
@@ -34,12 +28,10 @@
             <i class="material-icons right">arrow_drop_down</i>
           </a>
           <ul id="dropdown3" class="dropdown-content">
-            <li tabindex="0">
-              <a href="{% url 'academico:evalredigen' %}">Eval. de rediseño C.</a>
-              <a href="{% url 'academico:faculcre' %}">C. Facultad</a>
-              <a href="{% url 'academico:listfacul' %}">L. Facultades</a>
-              <a href="{% url 'academico:carrelist' %}">L. Carreras</a>
-            </li>
+              <li><a href="{% url 'academico:evalredigen' %}">Eval. de rediseño C.</a></li>
+              <li><a href="{% url 'academico:faculcre' %}">C. Facultad</a></li>
+              <li><a href="{% url 'academico:listfacul' %}">L. Facultades</a></li>
+              <li><a href="{% url 'academico:carrelist' %}">L. Carreras</a></li>
           </ul>
         </li>
       {% endif %}
@@ -50,10 +42,8 @@
             <i class="material-icons right">arrow_drop_down</i>
           </a>
           <ul id="dropdown4" class="dropdown-content">
-            <li tabindex="0">
-              <a href="{% url 'redicurri:carrerasredi' %}">Carreras</a>
-              <a href="{% url 'redicurri:listevalredi' %}">Lista evaluaciones</a>
-            </li>
+            <li><a href="{% url 'redicurri:carrerasredi' %}">Carreras</a></li>
+            <li><a href="{% url 'redicurri:listevalredi' %}">Lista evaluaciones</a></li>
           </ul>
         </li>
       {% endif %}
@@ -96,6 +86,24 @@
             <ul>
               <li><a href="{% url 'usuarios:createuser' %}">Crear</a></li>
               <li><a href="{% url 'usuarios:listausers' %}">Lista</a></li>
+              <li><a href="{% url 'usuarios:confgeneral' %}">Configuración</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+  {% endif %}
+  {% if perms.usuarios.academico %}
+    <li>
+      <ul class="collapsible collapsible-accordion" style="padding: 0px 15px;">
+        <li>
+          <a class="collapsible-header"><i class="material-icons">account_balance</i>Académico</a>
+          <div class="collapsible-body">
+            <ul>
+              <li><a href="{% url 'academico:evalredigen' %}">Eval. de rediseño C.</a></li>
+              <li><a href="{% url 'academico:faculcre' %}">C. Facultad</a></li>
+              <li><a href="{% url 'academico:listfacul' %}">L. Facultades</a></li>
+              <li><a href="{% url 'academico:carrelist' %}">L. Carreras</a></li>
             </ul>
           </div>
         </li>
@@ -106,11 +114,11 @@
     <li>
       <ul class="collapsible collapsible-accordion" style="padding: 0px 15px;">
         <li>
-          <a class="collapsible-header"><i class="material-icons">account_circle</i>R. Curricular</a>
+          <a class="collapsible-header"><i class="material-icons">attach_file</i>R. Curricular</a>
           <div class="collapsible-body">
             <ul>
-              <a href="{% url 'redicurri:carrerasredi' %}">Carreras</a>
-              <a href="{% url 'redicurri:listevalredi' %}">Lista evaluaciones</a>
+              <li><a href="{% url 'redicurri:carrerasredi' %}">Carreras</a></li>
+              <li><a href="{% url 'redicurri:listevalredi' %}">Lista evaluaciones</a></li>
             </ul>
           </div>
         </li>
