@@ -54,4 +54,6 @@ urlpatterns = [
     path('etapa7cr/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_7_view.as_view())), name='etapa7cr'),
     path('etapa7up/<int:pk>/',permission_required('usuarios.rediseño')(login_required(etapa_7_update_view.as_view())), name='etapa7up'),
     path('etapa7re/<int:pk>/',permission_required('usuarios.rediseño')(login_required(redirec_eval_etapa_7_view)), name='etapa7re'),
+    
+    path('participantes/<int:pk>/',permission_required('usuarios.rediseño')(login_required(participantes_view)), name='participantes')
 ]

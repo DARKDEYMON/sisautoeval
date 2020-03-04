@@ -2,11 +2,15 @@ from django import forms
 from django.forms import ModelForm
 from .models import *
 from material import *
+from django.forms.models import inlineformset_factory
+from material import *
+from django.forms import BaseInlineFormSet
 
 class eval_evaluacion_recurricular_form(ModelForm):
 	class Meta:
 		model = evaluacion_recurricular
 		exclude = [
+			'usuario',
 			'carrera',
 			'gestion',
 			'netapa_1',
@@ -94,3 +98,12 @@ class etapa_7_form(ModelForm):
 
 class search_form(forms.Form):
 	search = forms.CharField(required=False, label="", help_text="", widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Buscar...'}))
+
+class participantes_form(ModelForm):
+	layout = Layout(Row(Span3('nombre'), Span3('apellidos'),Span2('ci'),Span2('estamento'),Span2('DELETE')))
+	#DELETE = forms.BooleanField( label='Borrar')
+	class Meta:
+		model = participantes
+		exclude = ['evaluacion_recurricular']
+
+participantes_inline_form = inlineformset_factory(evaluacion_recurricular,participantes, form=participantes_form, exclude=(('evaluacion_recurricular'),), extra=1, can_delete=True)

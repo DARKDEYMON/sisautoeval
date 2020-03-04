@@ -13,6 +13,8 @@ from django.db.models.functions import Cast
 from .extras import *
 from constance import config
 
+from django.forms import modelformset_factory, inlineformset_factory
+
 # Create your views here. me falta dispachers de control
 class eval_evaluacion_recurricular_view(CreateView):
 	form_class = eval_evaluacion_recurricular_form
@@ -65,7 +67,7 @@ class eval_evaluacion_recurricular2_view(UpdateView):
 	form_class = eval_evaluacion_recurricular_rason_form
 	template_name = 'redicurri/crear_evalredi2.html'
 	success_url = 'redicurri:etapa1re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		self.object = self.get_object()
 		est = eliminar_al_cambiar(self.kwargs['pk'])
@@ -87,9 +89,6 @@ class eval_evaluacion_recurricular2_view(UpdateView):
 		if(self.object.retapa_1):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 #etapa 1
@@ -98,7 +97,7 @@ class etapa_1_view(CreateView):
 	form_class = etapa_1_form
 	template_name = 'redicurri/crear_etapa1.html'
 	success_url = 'redicurri:etapa2re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -115,16 +114,14 @@ class etapa_1_view(CreateView):
 		if(self.object.evaluacion_recurricular.retapa_2):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
+
 class etapa_1_update_view(UpdateView):
 	model = etapa_1
 	form_class = etapa_1_form
 	template_name = 'redicurri/crear_etapa1.html'
 	success_url = 'redicurri:etapa2re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -137,9 +134,6 @@ class etapa_1_update_view(UpdateView):
 		if(self.object.evaluacion_recurricular.retapa_2):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 def redirec_eval_etapa_1_view(request,pk):
@@ -157,7 +151,7 @@ class etapa_2_view(CreateView):
 	form_class = etapa_2_form
 	template_name = 'redicurri/crear_etapa2.html'
 	success_url = 'redicurri:etapa3re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -174,9 +168,6 @@ class etapa_2_view(CreateView):
 		if(self.object.evaluacion_recurricular.retapa_3):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 class etapa_2_update_view(UpdateView):
@@ -184,7 +175,7 @@ class etapa_2_update_view(UpdateView):
 	form_class = etapa_2_form
 	template_name = 'redicurri/crear_etapa2.html'
 	success_url = 'redicurri:etapa3re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -197,9 +188,6 @@ class etapa_2_update_view(UpdateView):
 		if(self.object.evaluacion_recurricular.retapa_3):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 def redirec_eval_etapa_2_view(request,pk):
@@ -217,7 +205,7 @@ class etapa_3_view(CreateView):
 	form_class = etapa_3_form
 	template_name = 'redicurri/crear_etapa3.html'
 	success_url = 'redicurri:etapa4re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -234,9 +222,6 @@ class etapa_3_view(CreateView):
 		if(self.object.evaluacion_recurricular.retapa_4):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 class etapa_3_update_view(UpdateView):
@@ -244,7 +229,7 @@ class etapa_3_update_view(UpdateView):
 	form_class = etapa_3_form
 	template_name = 'redicurri/crear_etapa3.html'
 	success_url = 'redicurri:etapa4re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -257,9 +242,6 @@ class etapa_3_update_view(UpdateView):
 		if(self.object.evaluacion_recurricular.retapa_4):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 def redirec_eval_etapa_3_view(request,pk):
@@ -277,7 +259,7 @@ class etapa_4_view(CreateView):
 	form_class = etapa_4_form
 	template_name = 'redicurri/crear_etapa4.html'
 	success_url = 'redicurri:etapa5re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -294,9 +276,6 @@ class etapa_4_view(CreateView):
 		if(self.object.evaluacion_recurricular.retapa_5):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 class etapa_4_update_view(UpdateView):
@@ -304,7 +283,7 @@ class etapa_4_update_view(UpdateView):
 	form_class = etapa_4_form
 	template_name = 'redicurri/crear_etapa4.html'
 	success_url = 'redicurri:etapa5re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -317,9 +296,6 @@ class etapa_4_update_view(UpdateView):
 		if(self.object.evaluacion_recurricular.retapa_5):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 def redirec_eval_etapa_4_view(request,pk):
@@ -337,7 +313,7 @@ class etapa_5_view(CreateView):
 	form_class = etapa_5_form
 	template_name = 'redicurri/crear_etapa5.html'
 	success_url = 'redicurri:etapa6re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -354,9 +330,6 @@ class etapa_5_view(CreateView):
 		if(self.object.evaluacion_recurricular.retapa_6):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 class etapa_5_update_view(UpdateView):
@@ -364,7 +337,7 @@ class etapa_5_update_view(UpdateView):
 	form_class = etapa_5_form
 	template_name = 'redicurri/crear_etapa5.html'
 	success_url = 'redicurri:etapa6re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -377,9 +350,6 @@ class etapa_5_update_view(UpdateView):
 		if(self.object.evaluacion_recurricular.retapa_6):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 def redirec_eval_etapa_5_view(request,pk):
@@ -397,7 +367,7 @@ class etapa_6_view(CreateView):
 	form_class = etapa_6_form
 	template_name = 'redicurri/crear_etapa6.html'
 	success_url = 'redicurri:etapa7re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -414,9 +384,6 @@ class etapa_6_view(CreateView):
 		if(self.object.evaluacion_recurricular.retapa_7):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 class etapa_6_update_view(UpdateView):
@@ -424,7 +391,7 @@ class etapa_6_update_view(UpdateView):
 	form_class = etapa_6_form
 	template_name = 'redicurri/crear_etapa6.html'
 	success_url = 'redicurri:etapa7re'
-	success_url2 = 'redicurri:listevalredi'
+	success_url2 = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -437,9 +404,6 @@ class etapa_6_update_view(UpdateView):
 		if(self.object.evaluacion_recurricular.retapa_7):
 			return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 		else:
-			res = self.object.evaluacion_recurricular
-			res.activo = False
-			res.save()
 			return reverse_lazy(self.success_url2)
 
 def redirec_eval_etapa_6_view(request,pk):
@@ -456,7 +420,7 @@ class etapa_7_view(CreateView):
 	model_extra = evaluacion_recurricular
 	form_class = etapa_7_form
 	template_name = 'redicurri/crear_etapa7.html'
-	success_url = 'redicurri:listevalredi'
+	success_url = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -470,16 +434,13 @@ class etapa_7_view(CreateView):
 			form.instance.evaluacion_recurricular = self.model_extra.objects.get(pk=self.kwargs['pk'])
 		return super().form_valid(form)
 	def get_success_url(self):
-		res = self.object.evaluacion_recurricular
-		res.activo = False
-		res.save()
-		return reverse_lazy(self.success_url)
+		return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 
 class etapa_7_update_view(UpdateView):
 	model = etapa_7
 	form_class = etapa_7_form
 	template_name = 'redicurri/crear_etapa7.html'
-	success_url = 'redicurri:listevalredi'
+	success_url = 'redicurri:participantes'
 	def dispatch(self, request, *args, **kwargs):
 		if not config.ACTIVO_REDIEVAL:
 			raise Http404("no esta activa la evaluacion al rediseño")
@@ -489,10 +450,7 @@ class etapa_7_update_view(UpdateView):
 			raise Http404("La evaluaciuon esta deasactivada")
 		return super(etapa_7_update_view, self).dispatch(request, *args, **kwargs)
 	def get_success_url(self):
-		res = self.object.evaluacion_recurricular
-		res.activo = False
-		res.save()
-		return reverse_lazy(self.success_url)
+		return reverse_lazy(self.success_url,kwargs={'pk':self.object.evaluacion_recurricular.pk})
 
 def redirec_eval_etapa_7_view(request,pk):
 	if not config.ACTIVO_REDIEVAL:
@@ -576,3 +534,48 @@ class lista_carreras_view(ListView):
 				).order_by('id')
 		else:
 			return self.model.objects.filter(asignacion_evaluacion__usuario=self.request.user)
+
+
+def participantes_view(request, pk):
+	if not config.ACTIVO_REDIEVAL:
+		raise Http404("no esta activa la evaluacion al rediseño")
+	try:
+		eval_redi = evaluacion_recurricular.objects.get(pk=pk,activo=True)
+	except Exception as e:
+		raise Http404("La evaluaciuon esta deasactivada")
+	part_fomset = participantes_inline_form#inlineformset_factory(evaluacion_recurricular,participantes, exclude=(('evaluacion_recurricular'),), can_delete=True, extra=2)
+	if request.method  == 'POST':
+		print(request.POST)
+		formset = part_fomset(request.POST,instance=eval_redi)
+		if(formset.is_valid()):
+			formset.save()
+			if 'envio' in request.POST:
+				return HttpResponseRedirect(reverse_lazy('redicurri:participantes',kwargs={'pk':pk}))
+			else:
+				eval_redi.activo = False
+				eval_redi.save()
+				return HttpResponseRedirect(reverse_lazy('redicurri:carrerasredi'))
+	formset = part_fomset(instance=eval_redi)
+	return render(request, 'redicurri/participantes.html',{'formset':formset})
+"""
+class participantes2_view(CreateView):
+	model = evaluacion_recurricular
+	template_name = 'redicurri/participantes.html'
+	form_class = participantes_inline_form
+	success_url = '/'
+	success_url2 = 'redicurri:participantes'
+	def get_context_data(self, **kwargs):
+		context = super(participantes2_view, self).get_context_data(**kwargs)
+		eval_redi = evaluacion_recurricular.objects.get(id=self.kwargs['pk'])
+		if self.request.POST:
+			context['formset'] = self.form_class(self.request.POST,instance=eval_redi)
+		else:
+			context['formset'] = self.form_class(instance=eval_redi)
+		return context
+	def form_valid(self, form):
+		context = self.get_context_data()
+		print(form)
+		if form.is_valid():
+			print(form)
+		return super(participantes2_view).form_valid(form)
+"""

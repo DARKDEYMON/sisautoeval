@@ -832,3 +832,32 @@ class etapa_7(models.Model):
 	history = HistoricalRecords()
 	def __str__(self):
 		return str(self.evaluacion_recurricular)
+
+class participantes(models.Model):
+	evaluacion_recurricular = models.ForeignKey(
+		evaluacion_recurricular,
+		on_delete=models.CASCADE,
+	)
+	nombre = models.CharField(
+		max_length=50,
+		blank=False,
+		null=False,
+	)
+	apellidos = models.CharField(
+		max_length=50,
+		blank=False,
+		null=False,
+	)
+	ci = models.PositiveIntegerField(
+		blank=False,
+		null=False
+	)
+	estamento = models.CharField(
+		max_length=1,
+		blank=False,
+		null=False,
+		choices=(('e','Estudiante'),('d','Docente'))
+	)
+	history = HistoricalRecords()
+	def __str__(self):
+		return str(self.ci)
