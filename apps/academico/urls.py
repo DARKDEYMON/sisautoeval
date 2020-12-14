@@ -24,6 +24,7 @@ urlpatterns = [
 	path('listfacul/',permission_required('usuarios.academico')(login_required(lista_facultada_view.as_view())), name='listfacul'),
 	path('faculcre/',permission_required('usuarios.academico')(login_required(facultad_create_view.as_view())), name='faculcre'),
 	path('faculup/<int:pk>/',permission_required('usuarios.academico')(login_required(facultad_update_view.as_view())), name='faculup'),
+	path('carreracre/',permission_required('usuarios.academico')(login_required(carrera_create_view.as_view())), name='carreracre'),
 	path('carrelist/',permission_required('usuarios.academico')(login_required(lista_carrera_view.as_view())), name='carrelist'),
 	path('carreup/<int:pk>/',permission_required('usuarios.academico')(login_required(carrera_update_view.as_view())), name='carreup'),
 ]

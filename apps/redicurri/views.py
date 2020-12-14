@@ -26,9 +26,9 @@ class eval_evaluacion_recurricular_view(CreateView):
 			raise Http404("no esta activa la evaluacion al rediseño")
 		try:
 			evaluacion_recurricular.objects.get(carrera__pk=pk, gestion=gestion())
-		except Exception as e:
 			raise Http404("ya existe")
-		return super(eval_evaluacion_recurricular_view, self).dispatch(request, *args, **kwargs)
+		except Exception as e:
+			return super(eval_evaluacion_recurricular_view, self).dispatch(request, *args, **kwargs)
 	def form_valid(self, form):
 		if form.is_valid():
 			form.instance.carrera = carrera.objects.get(pk=self.kwargs['pk'])
